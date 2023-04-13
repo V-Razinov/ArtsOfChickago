@@ -12,7 +12,7 @@ import com.example.ui.components.AOCIcons
 import com.example.ui.components.ScaleIn
 
 @Composable
-fun Splash(onFinish: () -> Unit) {
+internal fun Splash(onFinish: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
