@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import dependencies.android
 import dependencies.appDependencies
 import dependencies.hilt
@@ -18,10 +20,8 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
         buildConfigField(
             "String",
             "ARTS_OF_CHICAGO_BASE_URL",
@@ -32,10 +32,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
     compileOptions {
@@ -55,6 +51,7 @@ dependencies {
         retrofit {
             implementation(core)
             implementation(gsonConverter)
+            implementation(loggingInterceptor)
         }
         hilt {
             implementation(core)

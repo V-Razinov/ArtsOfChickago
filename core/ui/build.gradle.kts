@@ -17,16 +17,11 @@ android {
         minSdk = AppConfig.minSdk
 
         testInstrumentationRunner = AppConfig.testInstrumentationRunner
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
     buildFeatures {
@@ -53,6 +48,7 @@ dependencies {
             implementation(ui)
             implementation(toolingPreview)
             implementation(material3)
+            implementation(materialIcons)
             implementation(navigation)
             debugImplementation(composeUiiTooling)
             debugImplementation(composeUiTestManifest)

@@ -21,6 +21,9 @@ inline fun AppDependencies.hilt(block: AppDependencies.Hilt.() -> Unit): Unit =
 inline fun AppDependencies.retrofit(block: AppDependencies.Retrofit.() -> Unit): Unit =
     AppDependencies.Retrofit.block()
 
+inline fun AppDependencies.coil(block: AppDependencies.Coil.() -> Unit): Unit =
+    AppDependencies.Coil.block()
+
 inline fun AppDependencies.dagger(block: AppDependencies.Dagger.() -> Unit): Unit =
     AppDependencies.Dagger.block()
 

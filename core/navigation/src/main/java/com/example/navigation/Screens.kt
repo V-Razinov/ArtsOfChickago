@@ -1,26 +1,17 @@
 package com.example.navigation
 
-import androidx.navigation.NamedNavArgument
+import kotlin.reflect.KProperty
 
-interface Screen {
-    val route: String
-    val routeFormatted: String get() = route
-}
+@JvmInline
+value class Route(val value: String)
 
-object ArtsListScreen : Screen {
-    override val route: String = "arts"
-}
+operator fun Route.getValue(thisObj: Any?, property: KProperty<*>): String = value
 
-data class ArtDetailsScreen(
-    val userId: Int,
-) : Screen {
-    override val route: String = Companion.route
-    override val routeFormatted: String = route.replace("{userId}", userId.toString())
+fun <T> Route.withParam(paramName: String, paramValue: T): Route =
+    Route(this.value.replace("{$paramName}", paramValue.toString()))
 
-    companion object {
-        const val route = "profile?userId={userId}"
-
-        const val NO_USER_ID = -1
-        val args: List<NamedNavArgument> get() = listOf(intNavArgument("userId", NO_USER_ID))
-    }
+fun <T> Route.withParams(vararg pairs: Pair<String, T>): Route {
+    var route: Route = this
+    pairs.forEach { (name, value) -> route = route.withParam(name, value) }
+    return route
 }

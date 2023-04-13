@@ -2,8 +2,8 @@ package com.example.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.example.utils.extensions.asLaunchedEffect
 import com.example.navigation.router.Router
+import com.example.utils.extensions.asLaunchedEffect
 
 @Composable
 fun AppNavigator(navController: NavHostController, router: Router) {
@@ -19,26 +19,28 @@ fun AppNavigator(navController: NavHostController, router: Router) {
 
 private fun navigate(
     navController: NavHostController,
-    routerCommand: RouterCommand.Navigate
-) = navController.navigate(routerCommand.screen.routeFormatted)
+    routerCommand: RouterCommand.Navigate,
+) = navController.navigate(routerCommand.route.value)
 
 private fun back(
-    navController: NavHostController
+    navController: NavHostController,
 ) = navController.popBackStack()
 
 private fun replace(
     navController: NavHostController,
-    routerCommand: RouterCommand.Replace
-) = with(navController) {
-    popBackStack()
-    navController.navigate(routerCommand.screen.routeFormatted)
+    routerCommand: RouterCommand.Replace,
+) = navController.navigate(routerCommand.route.value) {
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
+    if (currentRoute != null) {
+        popUpTo(currentRoute) { inclusive = true }
+    }
 }
 
 private fun backTo(
     navController: NavHostController,
-    routerCommand: RouterCommand.BackTo
+    routerCommand: RouterCommand.BackTo,
 ) = navController.popBackStack(
-    routerCommand.screen.routeFormatted,
+    routerCommand.route.value,
     inclusive = false,
     saveState = false
 )

@@ -4,18 +4,18 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.arts.arts
-import com.example.navigation.ArtsListScreen
+import com.example.arts.artsListRoute
 import com.example.navigation.router.Router
 import com.example.splash
-import com.example.splash_route
+import com.example.splashRoute
 
 @Composable
-fun AppNavHost(navController: NavHostController, router: Router) {
+fun AOCNavHost(navController: NavHostController, router: Router) {
     NavHost(
         navController = navController,
-        startDestination = splash_route
+        startDestination = splashRoute.value
     ) {
-        splash(onFinish = { router.replace(ArtsListScreen) })
+        splash(onFinish = { router.replace(artsListRoute) })
         arts()
     }
 }

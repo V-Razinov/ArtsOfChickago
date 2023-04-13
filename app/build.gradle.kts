@@ -48,17 +48,6 @@ android {
             )
         }
     }
-//    flavorDimensions += "leeks"
-//    productFlavors {
-//        create("leekCanary") {
-//            dimension = "leeks"
-//            applicationIdSuffix = ".leek_canary"
-//            versionNameSuffix = "-leek_canary"
-//        }
-//        create("noLeekCanary") {
-//            dimension = "leeks"
-//        }
-//    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -87,7 +76,10 @@ dependencies {
             implementation(project(ui))
         }
         data {
-            implementation(project(artOfChicago))
+            implementation(project(arts))
+        }
+        domain {
+            implementation(project(arts))
         }
         features {
             implementation(project(arts))
@@ -115,7 +107,9 @@ dependencies {
             debugImplementation(composeUiiTooling)
             debugImplementation(composeUiTestManifest)
         }
-        implementation(AppDependencies.Coil.core)
+        coil {
+            implementation(core)
+        }
         retrofit {
             implementation(core)
             implementation(gsonConverter)
@@ -140,11 +134,3 @@ dependencies {
 
     }
 }
-//
-//kapt {
-//    correctErrorTypes = true
-//}
-//
-//hilt {
-//    enableAggregatingTask = true
-//}

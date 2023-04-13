@@ -1,8 +1,7 @@
 buildscript {
-    val kotlin_version by extra("1.8.10")
     dependencies {
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.45")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
     }
     repositories {
         mavenCentral()
@@ -13,12 +12,6 @@ plugins {
     id("com.android.application") version "7.4.2" apply false
     id("com.android.library") version "7.4.2" apply false
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
-}
-
-allprojects {
-    subprojects.forEach { subProject ->
-        subProject.plugins
-    }
 }
 
 tasks {

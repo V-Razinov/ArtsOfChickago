@@ -8,6 +8,9 @@ inline fun ProjectModules.core(block: ProjectModules.Core.() -> Unit) =
 inline fun ProjectModules.data(block: ProjectModules.Data.() -> Unit) =
     ProjectModules.Data.block()
 
+inline fun ProjectModules.domain(block: ProjectModules.Domain.() -> Unit) =
+    ProjectModules.Domain.block()
+
 inline fun ProjectModules.features(block: ProjectModules.Features.() -> Unit) =
     ProjectModules.Features.block()
 

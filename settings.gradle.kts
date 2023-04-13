@@ -18,12 +18,18 @@ rootProject.name = "ArtsOfChickago"
 
 include(
     "app",
+
     "core:network",
     "core:navigation",
     "core:ui",
+
     "data:common",
-    "data:artsofchicago",
+    "data:artsdata",
+
+    "domain:artsdomain",
+
     "feature:arts",
     "feature:splash",
+
     "utils",
 )

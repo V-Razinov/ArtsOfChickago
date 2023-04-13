@@ -2,7 +2,6 @@ package com.example.navigation.di
 
 import com.example.navigation.router.ChannelRouter
 import com.example.navigation.router.Router
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

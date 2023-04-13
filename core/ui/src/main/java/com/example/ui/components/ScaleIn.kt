@@ -21,15 +21,16 @@ fun ScaleIn(
     content: @Composable BoxScope.() -> Unit
 ) {
     val scale = remember { Animatable(initScale) }
-    if (scale.value == targetScale) {
-        onAnimationFinished()
-    }
     LaunchedEffect(key1 = delay) {
         delay(delay)
         scale.animateTo(
             targetValue = targetScale,
             animationSpec = tween()
-        )
+        ) {
+            if (this.value >= targetScale) {
+                onAnimationFinished()
+            }
+        }
     }
     Box(modifier = Modifier.scale(scale.value), content = content)
 }

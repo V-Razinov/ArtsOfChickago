@@ -11,7 +11,12 @@ object ProjectModules {
 
     object Data {
         private const val name = "data"
-        const val artOfChicago = ":$name:artsofchicago"
+        const val arts = ":$name:artsdata"
+    }
+
+    object Domain {
+        private const val name = "domain"
+        const val arts = ":$name:artsdomain"
     }
 
     object Features {

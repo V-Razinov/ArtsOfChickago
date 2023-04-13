@@ -1,6 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
 import dependencies.*
+import modules.core
+import modules.domain
+import modules.projectModules
+import modules.utils
 
 plugins {
     appPlugins {
@@ -19,16 +23,11 @@ android {
         minSdk = AppConfig.minSdk
 
         testInstrumentationRunner = AppConfig.testInstrumentationRunner
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
     buildFeatures {
@@ -47,6 +46,16 @@ android {
 }
 
 dependencies {
+    projectModules {
+        core {
+            implementation(project(ui))
+            implementation(project(navigation))
+        }
+        domain {
+            implementation(project(arts))
+        }
+        implementation(project(utils))
+    }
     appDependencies {
         android {
             implementation(core)
@@ -70,6 +79,9 @@ dependencies {
             implementation(core)
             implementation(viewModel)
             kapt(compiler)
+        }
+        coil {
+            implementation(core)
         }
 //        dagger {
 //            implementation(core)
