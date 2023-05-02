@@ -1,11 +1,17 @@
 import org.gradle.plugin.use.PluginDependenciesSpec
+import org.gradle.plugin.use.PluginDependencySpec
 
-fun appPlugins(block: Plugins.() -> Unit) = Plugins.block()
+val PluginDependenciesSpec.gradle: PluginDependencySpec
+    get() = id("com.android.application")
 
-object Plugins {
-    val PluginDependenciesSpec.gradle get() = id("com.android.application")
-    val PluginDependenciesSpec.kotlin get() = id("org.jetbrains.kotlin.android")
-    val PluginDependenciesSpec.kotlinKapt get() = id("kotlin-kapt")
-    val PluginDependenciesSpec.library get() = id("com.android.library")
-    val PluginDependenciesSpec.hilt get() = id("com.google.dagger.hilt.android")
-}
+val PluginDependenciesSpec.library: PluginDependencySpec
+    get() = id("com.android.library")
+
+val PluginDependenciesSpec.kotlin: PluginDependencySpec
+    get() = id("org.jetbrains.kotlin.android")
+
+val PluginDependenciesSpec.kotlinKapt: PluginDependencySpec
+    get() = id("kotlin-kapt")
+
+val PluginDependenciesSpec.hilt: PluginDependencySpec
+    get() = id("com.google.dagger.hilt.android")

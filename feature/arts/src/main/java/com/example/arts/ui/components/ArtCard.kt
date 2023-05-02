@@ -18,32 +18,27 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.example.ui.addIf
 import com.example.ui.components.AOCIcons
-import team.mediasoft.artsdomain.model.ArtListItem
+import com.example.artsdomain.model.ArtListItem
 
-private val cardImageSize = 100.dp
+internal val defaultCardImageSize = 100.dp
 
 @Preview
 @Composable
 private fun ArtCardPreview() {
     ArtCard(
-        modifier = Modifier,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(defaultCardImageSize),
         art = ArtListItem(
             id = 1,
             name = "Preview name",
             authors = "Preview Authors",
             imageUrl = null
         ),
-        onCardClick = {}
+        onCardClick = { }
     )
-}
-
-private inline fun Modifier.addIf(
-    condition: Boolean,
-    block: Modifier.() -> Modifier,
-) = when (condition) {
-    true -> this.block()
-    else -> this
 }
 
 @Composable
@@ -54,8 +49,6 @@ internal fun ArtCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(cardImageSize)
             .addIf(onCardClick != null) {
                 clickable { onCardClick?.invoke(art) }
             }
@@ -63,8 +56,7 @@ internal fun ArtCard(
     ) {
         Row(
             modifier = Modifier
-                .height(cardImageSize)
-                .fillMaxWidth()
+                .fillMaxSize()
         ) {
             Image(art)
             Column(
@@ -92,7 +84,7 @@ private fun Image(art: ArtListItem) {
         NoImage(
             modifier = Modifier
                 .fillMaxHeight()
-                .width(cardImageSize)
+                .aspectRatio(1f)
         )
         return
     }
@@ -100,7 +92,7 @@ private fun Image(art: ArtListItem) {
     SubcomposeAsyncImage(
         modifier = Modifier
             .fillMaxHeight()
-            .width(cardImageSize),
+            .aspectRatio(1f),
         model = ImageRequest.Builder(LocalContext.current)
             .data(art.imageUrl)
             .crossfade(true)

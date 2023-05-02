@@ -19,18 +19,24 @@ import com.example.ui.components.AOCTopBar
 @Composable
 internal fun ArtDetailsScreen(viewModel: ArtDetailsViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsState()
-    ArtDetailsScreen(state = state)
+    ArtDetailsScreen(
+        state = state,
+        onBackClick = viewModel::onBackClick,
+    )
 }
 
 @Composable
-private fun ArtDetailsScreen(state: ArtDetailsState) {
+private fun ArtDetailsScreen(
+    state: ArtDetailsState,
+    onBackClick: () -> Unit,
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             AOCTopBar(
                 title = "Details",
                 navigationIcon = AOCIcons.ArrowBack,
-                onNavigationIconClick = { }
+                onNavigationIconClick = onBackClick
             )
         }
     ) {

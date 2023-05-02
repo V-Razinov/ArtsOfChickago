@@ -9,10 +9,14 @@ import com.example.utils.extensions.asLaunchedEffect
 fun AppNavigator(navController: NavHostController, router: Router) {
     router.commandsFlow.asLaunchedEffect(key = navController) { routerCommand: RouterCommand ->
         when (routerCommand) {
-            is RouterCommand.Navigate -> navigate(navController, routerCommand)
-            RouterCommand.Back -> back(navController)
-            is RouterCommand.BackTo -> backTo(navController, routerCommand)
-            is RouterCommand.Replace -> replace(navController, routerCommand)
+            is RouterCommand.Navigate ->
+                navigate(navController, routerCommand)
+            RouterCommand.Back ->
+                back(navController)
+            is RouterCommand.BackTo ->
+                backTo(navController, routerCommand)
+            is RouterCommand.Replace ->
+                replace(navController, routerCommand)
         }
     }
 }
@@ -30,7 +34,9 @@ private fun replace(
     navController: NavHostController,
     routerCommand: RouterCommand.Replace,
 ) = navController.navigate(routerCommand.route.value) {
-    val currentRoute = navController.currentBackStackEntry?.destination?.route
+    val currentRoute = navController.currentBackStackEntry
+        ?.destination
+        ?.route
     if (currentRoute != null) {
         popUpTo(currentRoute) { inclusive = true }
     }

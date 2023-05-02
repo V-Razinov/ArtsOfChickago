@@ -32,8 +32,9 @@ object AppDependencies {
     object Hilt {
         private const val version = "2.45"
         const val core = "com.google.dagger:hilt-android:$version"
-        const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0"
+        const val coreTesting = "com.google.dagger:hilt-android-testing:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
     object Dagger {
@@ -57,13 +58,17 @@ object AppDependencies {
     }
 
     object Test {
-        const val jUnit = "junit:junit:4.13.2"
         const val extJUnit = "androidx.test.ext:junit:1.1.4"
+        const val runner = "androidx.test:runner:1.5.2"
+
+        const val jUnit = "junit:junit:4.13.2"
 
         const val composeUi = "androidx.compose.ui:ui-test-junit4:1.3.3"
 
         const val mockitoCore = "org.mockito:mockito-core:5.2.0"
         const val mockitoKt = "org.mockito.kotlin:mockito-kotlin:3.2.0"
+
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     }
 
 }

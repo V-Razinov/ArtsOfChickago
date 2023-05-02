@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.onStart
 
 sealed interface Result<out T> {
     data class Success<T>(val data: T) : Result<T>
-    data class Loading<T>(val data: T?) : Result<T>
+    object Loading : Result<Nothing>
     data class Error(val error: Throwable) : Result<Nothing>
 }
 
@@ -15,5 +15,5 @@ sealed interface Result<out T> {
 fun <T> Flow<T>.asResult(): Flow<Result<T>> =
     this
         .map<T, Result<T>> { Result.Success(it) }
-        .onStart { emit(Result.Loading(null)) }
+        .onStart { emit(Result.Loading) }
         .catch { t -> emit(Result.Error(t)) }

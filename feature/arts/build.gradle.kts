@@ -7,12 +7,10 @@ import modules.projectModules
 import modules.utils
 
 plugins {
-    appPlugins {
-        library
-        kotlin
-        kotlinKapt
-        hilt
-    }
+    library
+    kotlin
+    kotlinKapt
+    hilt
 }
 
 android {
@@ -35,6 +33,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion
@@ -51,8 +50,9 @@ android {
 dependencies {
     projectModules {
         core {
-            implementation(project(ui))
+            implementation(project(dispatchers))
             implementation(project(navigation))
+            implementation(project(ui))
         }
         domain {
             implementation(project(arts))
@@ -86,9 +86,9 @@ dependencies {
         coil {
             implementation(core)
         }
-//        dagger {
-//            implementation(core)
-//            kapt(compiler)
-//        }
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }

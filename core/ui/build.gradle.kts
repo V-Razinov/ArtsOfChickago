@@ -3,10 +3,8 @@
 import dependencies.*
 
 plugins {
-    appPlugins {
-        library
-        kotlin
-    }
+    library
+    kotlin
 }
 
 android {
@@ -29,6 +27,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion

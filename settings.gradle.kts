@@ -1,12 +1,13 @@
 @file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
-
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,17 +15,23 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ArtsOfChickago"
+
+rootProject.name = "ArtsOfChicago"
 
 include(
     "app",
 
-    "core:network",
+    "core:common",
+    "core:dispatchers",
+    "core:dispatchers-testing",
     "core:navigation",
+    "core:network",
+    "core:testing",
     "core:ui",
 
     "data:common",
-    "data:artsdata",
+    "data:arts-data",
+    "data:arts-data-testing",
 
     "domain:artsdomain",
 

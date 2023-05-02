@@ -1,20 +1,17 @@
 @file:Suppress("UnstableApiUsage")
 
 import dependencies.*
-import modules.data
-import modules.projectModules
+import modules.*
 
 plugins {
-    appPlugins {
-        library
-        kotlin
-        kotlinKapt
-        hilt
-    }
+    library
+    kotlin
+    kotlinKapt
+    hilt
 }
 
 android {
-    namespace = "team.mediasoft.artsdomain"
+    namespace = "com.example.artsdomain"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
@@ -31,6 +28,9 @@ android {
             isMinifyEnabled = false
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,6 +42,10 @@ android {
 
 dependencies {
     projectModules {
+        core {
+            implementation(project(common))
+            implementation(project(dispatchers))
+        }
         data {
             implementation(project(arts))
         }
@@ -57,12 +61,6 @@ dependencies {
         }
         retrofit {
             implementation(core)
-        }
-        test {
-            testImplementation(jUnit)
-            testImplementation(extJUnit)
-            testImplementation(mockitoCore)
-            testImplementation(mockitoKt)
         }
     }
 }

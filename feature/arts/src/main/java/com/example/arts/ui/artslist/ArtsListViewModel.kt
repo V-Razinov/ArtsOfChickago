@@ -3,23 +3,22 @@ package com.example.arts.ui.artslist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.arts.artDetailsRoute
-import com.example.arts.ui.artdetails.ArtDetailsScreen
-import com.example.navigation.getValue
 import com.example.navigation.router.Router
 import com.example.navigation.withParam
 import com.example.utils.Result
 import com.example.utils.asResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import team.mediasoft.artsdomain.model.ArtListItem
-import team.mediasoft.artsdomain.usecase.GetArtsUseCase
+import com.example.artsdomain.model.ArtListItem
+import com.example.artsdomain.usecase.GetArtsUseCase
+import com.example.dispatchers.AOCDispatchers
 import javax.inject.Inject
 
 @HiltViewModel
 internal class ArtsListViewModel @Inject constructor(
     getArtsUseCase: GetArtsUseCase,
     private val router: Router,
+    private val dispatchers: AOCDispatchers,
 ) : ViewModel() {
 
     val state: StateFlow<ArtsListState> =
@@ -29,7 +28,7 @@ internal class ArtsListViewModel @Inject constructor(
                 when (result) {
                     is Result.Loading -> ArtsListState(
                         isLoading = true,
-                        arts = result.data?.arts.orEmpty()
+                        arts = emptyList()
                     )
                     is Result.Success -> ArtsListState(
                         isLoading = false,
@@ -38,7 +37,6 @@ internal class ArtsListViewModel @Inject constructor(
                     is Result.Error -> ArtsListState(isLoading = false)
                 }
             }
-            .flowOn(Dispatchers.IO)
             .stateIn(viewModelScope, started = SharingStarted.Lazily, ArtsListState())
 
     fun onArtClick(art: ArtListItem) {

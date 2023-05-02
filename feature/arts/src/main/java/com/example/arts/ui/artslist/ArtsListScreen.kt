@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -20,10 +21,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.arts.ui.components.AnimatedScrollToTopButton
 import com.example.arts.ui.components.ArtCard
 import com.example.arts.ui.components.Loader
+import com.example.arts.ui.components.defaultCardImageSize
 import com.example.ui.components.AOCTopBar
 import com.example.ui.components.withExtra
 import kotlinx.coroutines.launch
-import team.mediasoft.artsdomain.model.ArtListItem
+import com.example.artsdomain.model.ArtListItem
 
 @Composable
 internal fun ArtsListScreen(viewModel: ArtsListViewModel = hiltViewModel()) {
@@ -56,7 +58,9 @@ private fun ArtsListScreen(
         topBar = { AOCTopBar(title = "Arts") },
         floatingActionButton = {
             AnimatedScrollToTopButton(
-                modifier = Modifier.onSizeChanged { intSize -> fabSize = intSize.height },
+                modifier = Modifier
+                    .onSizeChanged { intSize -> fabSize = intSize.height }
+                    .testTag(ArtsListTestTags.SCROLL_UP),
                 visible = showScrollToTopButton,
                 onClick = onScrollToTopClick
             )
@@ -72,13 +76,16 @@ private fun ArtsListScreen(
                 Loader(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(paddings),
+                        .padding(paddings)
+                        .testTag(ArtsListTestTags.LOADER),
                 )
                 return@Surface
             }
 
             Arts(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .testTag(ArtsListTestTags.ARTS_LIST),
                 arts = state.arts,
                 lazyListState = lazyListState,
                 contentPaddings = paddings.withExtra(
@@ -115,7 +122,14 @@ private fun Arts(
                 key = { _, art -> art.id },
                 contentType = { _, _ -> ArtsContentTypes.ART }
             ) { index, art ->
-                ArtCard(art = art, onCardClick = onArtClick)
+                ArtCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(defaultCardImageSize)
+                        .testTag(ArtsListTestTags.ART_CARD),
+                    art = art,
+                    onCardClick = onArtClick
+                )
                 if (index < arts.lastIndex) {
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -125,13 +139,12 @@ private fun Arts(
 }
 
 // --------- Preview ---------
-
 @Preview(
     showSystemUi = true,
     device = Devices.PHONE
 )
 @Composable
-private fun ArtsListScreenLoadingPreview(
+private fun ArtsListScreenPreview(
     @PreviewParameter(ArtsListScreenPPP::class)
     state: ArtsListState,
 ) {

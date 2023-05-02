@@ -6,12 +6,10 @@ import dependencies.hilt
 import dependencies.retrofit
 
 plugins {
-    appPlugins {
-        library
-        kotlin
-        kotlinKapt
-        hilt
-    }
+    library
+    kotlin
+    kotlinKapt
+    hilt
 }
 
 android {
@@ -21,7 +19,7 @@ android {
     defaultConfig {
         minSdk = 24
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AppConfig.testInstrumentationRunner
         buildConfigField(
             "String",
             "ARTS_OF_CHICAGO_BASE_URL",
@@ -36,6 +34,9 @@ android {
         debug {
             isMinifyEnabled = false
         }
+    }
+    buildFeatures {
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

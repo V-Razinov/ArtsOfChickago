@@ -4,12 +4,10 @@ import dependencies.*
 import modules.*
 
 plugins {
-    appPlugins {
-        gradle
-        kotlin
-        kotlinKapt
-        hilt
-    }
+    gradle
+    kotlin
+    kotlinKapt
+    hilt
 }
 
 android {
@@ -54,9 +52,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += "-Xcontext-receivers"
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion
@@ -71,8 +71,11 @@ android {
 dependencies {
     projectModules {
         core {
+            implementation(project(dispatchers))
             implementation(project(network))
             implementation(project(navigation))
+            implementation(project(testing))
+            testImplementation(project(testing))
             implementation(project(ui))
         }
         data {
@@ -116,21 +119,30 @@ dependencies {
         }
         hilt {
             implementation(core)
+            implementation(coreTesting)
             implementation(viewModel)
             kapt(compiler)
-        }
-//        dagger {
-//            implementation(core)
-//            kapt(compiler)
-//        }
-//        leekCanary {
-//            debugImplementation(core)
-//        }
-        test {
-            testImplementation(jUnit)
-            androidTestImplementation(extJUnit)
-            androidTestImplementation(composeUi)
+
+            androidTestImplementation(coreTesting)
+            kaptAndroidTest(compiler)
+
+            testImplementation(coreTesting)
+            kaptTest(compiler)
         }
 
+        // tests
+        test {
+            implementation(runner)
+            testImplementation(jUnit)
+            testImplementation(extJUnit)
+            testImplementation(mockitoCore)
+            testImplementation(mockitoKt)
+            testImplementation(coroutines)
+            androidTestImplementation(composeUi)
+        }
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }

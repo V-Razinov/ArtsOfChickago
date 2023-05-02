@@ -4,12 +4,10 @@ import dependencies.*
 import modules.*
 
 plugins {
-    appPlugins {
-        library
-        kotlin
-        kotlinKapt
-        hilt
-    }
+    library
+    kotlin
+    kotlinKapt
+    hilt
 }
 
 android {
@@ -32,6 +30,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = false
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion

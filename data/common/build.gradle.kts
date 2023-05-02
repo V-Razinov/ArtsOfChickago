@@ -1,17 +1,12 @@
 @file:Suppress("UnstableApiUsage")
 
-import dependencies.android
-import dependencies.appDependencies
-import dependencies.hilt
-import dependencies.retrofit
+import dependencies.*
 
 plugins {
-    appPlugins {
-        library
-        kotlin
-        kotlinKapt
-        hilt
-    }
+    library
+    kotlin
+    kotlinKapt
+    hilt
 }
 
 android {
@@ -31,6 +26,9 @@ android {
         debug {
             isMinifyEnabled = false
         }
+    }
+    buildFeatures {
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
