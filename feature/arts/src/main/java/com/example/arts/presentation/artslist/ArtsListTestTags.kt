@@ -1,4 +1,4 @@
-package com.example.arts.ui.artslist
+package com.example.arts.presentation.artslist
 
 internal object ArtsListTestTags {
     const val LOADER = "loader"

@@ -17,16 +17,19 @@ object AppDependencies {
     }
 
     object Compose {
-        private const val rootVersion = "1.3.3"
-        const val ui = "androidx.compose.ui:ui:$rootVersion"
-        const val navigation = "androidx.navigation:navigation-compose:2.5.3"
-        const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$rootVersion"
+        private const val rootVersion = "1.4.2"
 
+        const val ui = "androidx.compose.ui:ui:$rootVersion"
+        const val runtime = "androidx.compose.runtime:runtime:$rootVersion"
+        const val material = "androidx.compose.material:material:$rootVersion"
         const val material3 = "androidx.compose.material3:material3:1.1.0-alpha08"
         const val materialIcons = "androidx.compose.material:material:1.4.1"
 
-        const val composeUiiTooling = "androidx.compose.ui:ui-tooling:1.3.3"
-        const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:1.3.3"
+        const val navigation = "androidx.navigation:navigation-compose:2.5.3"
+        const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$rootVersion"
+
+        const val composeUiiTooling = "androidx.compose.ui:ui-tooling:$rootVersion"
+        const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:$rootVersion"
     }
 
     object Hilt {
@@ -37,10 +40,8 @@ object AppDependencies {
         const val viewModel = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
-    object Dagger {
-        private const val version = "2.45"
-        const val core = "com.google.dagger:dagger:$version"
-        const val compiler = "com.google.dagger:dagger-compiler:$version"
+    object JsonConverter {
+        const val gson = "com.google.code.gson:gson:2.10.1"
     }
 
     object Retrofit {
@@ -49,8 +50,23 @@ object AppDependencies {
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.10.0"
     }
 
+    object Room {
+        private const val version = "2.5.1"
+        const val core = "androidx.room:room-runtime:$version"
+        const val compiler = "androidx.room:room-compiler:$version"
+        const val ktx = "androidx.room:room-ktx:$version"
+        const val testing = "androidx.room:room-testing:$version"
+        const val paging = "androidx.room:room-paging:$version"
+    }
+
     object Coil {
         const val core = "io.coil-kt:coil-compose:2.3.0"
+        const val gif = "io.coil-kt:coil-gif:2.3.0"
+    }
+
+    object Paging {
+        const val core = "androidx.paging:paging-runtime:3.1.1"
+        const val compose = "androidx.paging:paging-compose:1.0.0-alpha18"
     }
 
     object LeekCanary {

@@ -1,4 +1,4 @@
-package com.example.arts.ui.artdetails
+package com.example.arts.presentation.artdetails
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

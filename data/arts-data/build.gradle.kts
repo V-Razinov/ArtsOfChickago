@@ -2,6 +2,7 @@
 
 import dependencies.*
 import modules.core
+import modules.data
 import modules.projectModules
 import modules.utils
 
@@ -45,8 +46,12 @@ android {
 dependencies {
     projectModules {
         core {
+            implementation(project(common))
             implementation(project(dispatchers))
             implementation(project(network))
+        }
+        data {
+            implementation(project(common))
         }
         implementation(project(utils))
     }
@@ -61,6 +66,12 @@ dependencies {
         }
         retrofit {
             implementation(core)
+        }
+        room {
+            implementation(core)
+            implementation(ktx)
+            implementation(paging)
+            kapt(compiler)
         }
     }
 }

@@ -2,20 +2,20 @@
 
 package com.example.artsdomain.mapper
 
-import com.example.artsdata.model.ArtsResponse
+import com.example.artsdata.model.ArtPojo
 import com.example.artsdomain.ArtImageLinkBuilder
 import com.example.artsdomain.model.ArtListItem
 import com.example.common.Mapper
 import javax.inject.Inject
 
-internal class ArtToArtListItemMapper @Inject constructor() : Mapper<ArtsResponse.Art, ArtListItem> {
+class ArtToArtListItemMapper @Inject constructor() : Mapper<ArtPojo, ArtListItem> {
 
-    override operator fun invoke(art: ArtsResponse.Art): ArtListItem =
+    override operator fun invoke(artPojo: ArtPojo): ArtListItem =
         ArtListItem(
-            id = art.id,
-            name = art.title,
-            authors = art.artist_titles.joinToString(separator = ", "),
-            imageUrl = when (val id = art.image_id ?: art.alt_image_ids.firstOrNull()) {
+            id = artPojo.id,
+            name = artPojo.title,
+            authors = artPojo.artist_titles.joinToString(separator = ", "),
+            imageUrl = when (val id = artPojo.image_id ?: artPojo.alt_image_ids.firstOrNull()) {
                 null -> null
                 else -> ArtImageLinkBuilder()
                     .imageId(id)

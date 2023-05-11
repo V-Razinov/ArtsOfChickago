@@ -5,8 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.arts.ui.artdetails.ArtDetailsScreen
-import com.example.arts.ui.artslist.ArtsListScreen
+import com.example.arts.presentation.artdetails.ArtDetailsScreen
+import com.example.arts.presentation.artslist.ArtsListScreen
 import com.example.navigation.Route
 
 val artsListRoute = Route("arts")

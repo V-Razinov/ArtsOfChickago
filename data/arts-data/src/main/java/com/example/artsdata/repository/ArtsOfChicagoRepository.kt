@@ -7,6 +7,4 @@ interface ArtsOfChicagoRepository {
 
     fun getArts(page: Int, pageSize: Int, fields: String): Flow<ArtsResponse>
 
-//    fun getArtById(id: Int): Art?
-
 }

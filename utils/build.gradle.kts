@@ -27,7 +27,7 @@ android {
     }
     buildFeatures {
         compose = true
-        buildConfig = true
+        buildConfig = false
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion

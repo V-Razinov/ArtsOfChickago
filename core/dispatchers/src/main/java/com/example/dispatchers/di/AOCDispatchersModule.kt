@@ -11,7 +11,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AOCDispatchersModule {
+
     @Provides
     @Singleton
     fun provideAOCDispatchers(): AOCDispatchers = AOCDispatchersImpl()
+
 }

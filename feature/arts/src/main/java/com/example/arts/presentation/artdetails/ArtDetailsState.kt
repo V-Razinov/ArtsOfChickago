@@ -1,4 +1,4 @@
-package com.example.arts.ui.artdetails
+package com.example.arts.presentation.artdetails
 
 internal data class ArtDetailsState(
     val id: Int = -1,

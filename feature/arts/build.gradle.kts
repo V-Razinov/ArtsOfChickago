@@ -33,7 +33,7 @@ android {
     }
     buildFeatures {
         compose = true
-        buildConfig = true
+        buildConfig = false
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion
@@ -72,9 +72,10 @@ dependencies {
         }
         compose {
             implementation(ui)
-            implementation(toolingPreview)
+            implementation(material)
             implementation(material3)
             implementation(navigation)
+            implementation(toolingPreview)
             debugImplementation(composeUiiTooling)
             debugImplementation(composeUiTestManifest)
         }
@@ -85,6 +86,11 @@ dependencies {
         }
         coil {
             implementation(core)
+            implementation(gif)
+        }
+        paging {
+            implementation(core)
+            implementation(compose)
         }
     }
 }

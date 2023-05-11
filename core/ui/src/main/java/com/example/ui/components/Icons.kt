@@ -16,10 +16,13 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.example.ui.R
 import com.example.ui.components.AOCIcon.DrawableResourceIcon
 import com.example.ui.components.AOCIcon.ImageVectorIcon
+import java.lang.ref.WeakReference
 
 sealed interface AOCIcon {
-    data class ImageVectorIcon(val imageVector: ImageVector) : AOCIcon
-    data class DrawableResourceIcon(@DrawableRes val id: Int) : AOCIcon
+    @JvmInline
+    value class ImageVectorIcon(val imageVector: ImageVector) : AOCIcon
+    @JvmInline
+    value class DrawableResourceIcon(@DrawableRes val id: Int) : AOCIcon
 }
 
 object AOCIcons {
@@ -28,10 +31,11 @@ object AOCIcons {
     val Splash by lazy { ImageVectorIcon(Icons.Rounded.Build) }
     val ScrollUp by lazy { ImageVectorIcon(Icons.Rounded.KeyboardArrowUp) }
     val ArrowBack by lazy { ImageVectorIcon(Icons.Rounded.ArrowBack) }
+    val DrLivesey by lazy { DrawableResourceIcon(R.drawable.ic_dr_livesey) }
+    val Error by lazy { DrawableResourceIcon(R.drawable.ic_error) }
 }
 
 // ----- Preview -----
-
 private class AOCIconsProvider : PreviewParameterProvider<AOCIcon> {
     override val values: Sequence<AOCIcon> = sequenceOf(
         AOCIcons.Reload,
@@ -39,6 +43,8 @@ private class AOCIconsProvider : PreviewParameterProvider<AOCIcon> {
         AOCIcons.Splash,
         AOCIcons.ScrollUp,
         AOCIcons.ArrowBack,
+        AOCIcons.DrLivesey,
+        AOCIcons.Error
     )
 }
 

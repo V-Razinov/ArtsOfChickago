@@ -1,6 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
 import dependencies.*
+import modules.core
+import modules.projectModules
 
 plugins {
     library
@@ -28,7 +30,7 @@ android {
         }
     }
     buildFeatures {
-        buildConfig = true
+        buildConfig = false
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -40,6 +42,11 @@ android {
 }
 
 dependencies {
+    projectModules {
+        core {
+            implementation(project(common))
+        }
+    }
     appDependencies {
         android {
             implementation(core)
@@ -48,6 +55,10 @@ dependencies {
             implementation(gsonConverter)
         }
         hilt {
+            implementation(core)
+            kapt(compiler)
+        }
+        room {
             implementation(core)
             kapt(compiler)
         }

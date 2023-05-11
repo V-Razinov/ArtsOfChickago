@@ -25,7 +25,9 @@ fun ScaleIn(
         delay(delay)
         scale.animateTo(
             targetValue = targetScale,
-            animationSpec = tween()
+            animationSpec = tween(
+                durationMillis = 1_000,
+            )
         ) {
             if (this.value >= targetScale) {
                 onAnimationFinished()

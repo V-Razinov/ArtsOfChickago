@@ -27,7 +27,7 @@ android {
     }
     buildFeatures {
         compose = true
-        buildConfig = true
+        buildConfig = false
     }
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion
@@ -54,6 +54,10 @@ dependencies {
             implementation(navigation)
             debugImplementation(composeUiiTooling)
             debugImplementation(composeUiTestManifest)
+        }
+        coil {
+            implementation(core)
+            implementation(gif)
         }
     }
 

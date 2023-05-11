@@ -29,5 +29,5 @@ class GetArtsUseCase @Inject internal constructor(
             fields = fields
         )
             .map(artResponseToArtsResultMapper::invoke)
-            .flowOn(dispatchers.Io)
+            .flowOn(dispatchers.IO)
 }

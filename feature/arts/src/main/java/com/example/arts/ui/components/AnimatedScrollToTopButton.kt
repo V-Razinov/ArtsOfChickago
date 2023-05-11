@@ -19,8 +19,7 @@ internal fun AnimatedScrollToTopButton(
         exit = fadeOut() + slideOutVertically { it }
     ) {
         ScrollToTopButton(
-            modifier = Modifier
-                .padding(end = 16.dp, bottom = 16.dp),
+            modifier = Modifier,
             onClick = onClick
         )
     }

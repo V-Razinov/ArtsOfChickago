@@ -11,7 +11,8 @@ internal class ChannelRouter(
 ) : Router {
 
     private val commandsChannel = Channel<RouterCommand>(capacity = commandsBufferSize)
-    override val commandsFlow: Flow<RouterCommand> get() = commandsChannel.receiveAsFlow()
+    override val commandsFlow: Flow<RouterCommand>
+        get() = commandsChannel.receiveAsFlow()
 
     override fun navigate(route: Route) {
         commandsChannel.trySend(RouterCommand.Navigate(route))

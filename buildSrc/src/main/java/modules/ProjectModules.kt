@@ -17,6 +17,7 @@ object ProjectModules {
         private const val name = "data"
         const val arts = ":$name:arts-data"
         const val artsTesting = "$arts-testing"
+        const val common = ":$name:common"
     }
 
     object Domain {

@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +20,7 @@ import coil.request.ImageRequest
 import com.example.ui.addIf
 import com.example.ui.components.AOCIcons
 import com.example.artsdomain.model.ArtListItem
+import com.example.ui.components.Loader
 
 internal val defaultCardImageSize = 100.dp
 
@@ -122,14 +122,18 @@ private fun Image(art: ArtListItem) {
 
 @Composable
 private fun ImageLoading() {
-    Box(
+    Loader(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.size(24.dp),
-        )
-    }
+//        imageSize = 128.dp
+    )
+//    Box(
+//        modifier = Modifier.fillMaxSize(),
+//        contentAlignment = Alignment.Center,
+//    ) {
+//        CircularProgressIndicator(
+//            modifier = Modifier.size(24.dp),
+//        )
+//    }
 }
 
 @Composable

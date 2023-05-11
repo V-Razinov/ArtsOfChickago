@@ -29,7 +29,7 @@ android {
         }
     }
     buildFeatures {
-        buildConfig = true
+        buildConfig = false
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -49,6 +49,7 @@ dependencies {
         data {
             implementation(project(arts))
         }
+        implementation(project(utils))
     }
 
     appDependencies {
@@ -61,6 +62,14 @@ dependencies {
         }
         retrofit {
             implementation(core)
+        }
+        paging {
+            implementation(core)
+        }
+        room {
+            implementation(core)
+            implementation(ktx)
+            kapt(compiler)
         }
     }
 }

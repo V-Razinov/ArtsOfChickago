@@ -11,5 +11,5 @@ object AppConfig {
 
     const val testInstrumentationRunner = "com.example.testing.AOCTestRunner"
 
-    const val kotlinCompilerExtensionVersion = "1.4.3"
+    const val kotlinCompilerExtensionVersion = "1.4.6"
 }

@@ -29,9 +29,9 @@ include(
     "core:testing",
     "core:ui",
 
-    "data:common",
     "data:arts-data",
     "data:arts-data-testing",
+    "data:common",
 
     "domain:artsdomain",
 

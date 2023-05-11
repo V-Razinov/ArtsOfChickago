@@ -26,7 +26,7 @@ class TestTest {
 
     @Test
     fun test_test() {
-        assert(true)
+        assert(myInt == 1)
     }
 
 }

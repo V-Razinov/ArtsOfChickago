@@ -15,8 +15,10 @@ import javax.inject.Singleton
     replaces = [AOCDispatchersModule::class]
 )
 object TestAOCDispatchersModule {
+
     @Provides
     @Singleton
     @OptIn(ExperimentalCoroutinesApi::class)
     fun provideAOCDispatchers(): AOCDispatchers = TestAOCDispatchers()
+
 }
